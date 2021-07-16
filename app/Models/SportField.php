@@ -12,11 +12,13 @@ class SportField extends Model
     protected $fillable = [
         'name',
         'description',
-        'price_hourly',
-        'starting_hour',
-        'ending_hour',
+        'price',
+        'start_time',
+        'end_time',
         'sport_location_id'
     ];
+
+    public $timestamps = false;
 
     public function sportsLocation(){
         return $this->hasOne(SportsLocation::class, 'id', 'sport_location_id');

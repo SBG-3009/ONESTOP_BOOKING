@@ -15,7 +15,7 @@ class SportsLocation extends Model
         'sport_types'
     ];
 
-    public function sportField() {
-        return $this->belongsTo(SportField::class);
+    public function sportLocation() {
+        return $this->hasOne(SportLocation::class, 'id', 'sport_location_id');
     }
 }

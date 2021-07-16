@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Booking;
-use App\Models\BookingStatus;
-use App\Models\Transaction;
+use App\Models\BookStatus;
 use App\Models\SportField;
 use App\Models\SportsLocation;
 use Illuminate\Http\Request;
@@ -34,7 +33,7 @@ class CourtController extends Controller
     {
         SportField::create($request->all());
         $courts = SportField::get();
-        $sportLocations = SportsLocation::get();
+        $sportsLocation = SportsLocation::get();
         return view('manageCourt', ['message'=> 'Record Is Successfully Created'], compact('courts', 'sportsLocation'));
     }
 
@@ -55,7 +54,7 @@ class CourtController extends Controller
         $court->sport_location_id = $request->sport_location_id;
         $court->save();
         $courts = SportField::with('sportLocation')->get();
-        $sportLocations = SportsLocation::get();
+        $sportsLocation = SportsLocation::get();
         return view('manageCourt', ['message'=> 'Record Is Successfully Updated'], compact('courts', 'sportsLocation'));
     }
 
@@ -69,7 +68,7 @@ class CourtController extends Controller
     {
         SportField::destroy($id);
         $courts = SportField::with('sportsLocation')->get();
-        $sportLocations = SportsLocation::get();
+        $sportsLocation = SportsLocation::get();
         return view('manageCourt', ['message'=> 'Record Is Deleted'], compact('courts', 'sportsLocation'));
     }
 }
